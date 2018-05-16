@@ -23,6 +23,8 @@ def setup():
     GPIO.setmode(GPIO.BCM)
     #set LEDPIN's mode to output,and initial level to LOW(0V)
     GPIO.setup(LEDPIN,GPIO.OUT,initial=GPIO.LOW)
+    GPIO.setup(5,GPIO.OUT,initial=GPIO.LOW)
+    GPIO.setup(26,GPIO.OUT,initial=GPIO.LOW)
 
 
 def read_dht11_dat():
@@ -136,7 +138,9 @@ def main():
 
                 GPIO.output(LEDPIN,GPIO.LOW)
                 print('LED OFF...\n')
-            else if(discom < 80):
+
+
+            elif discom < 80 :
                 #pin26 yelow
                 LEDPIN = 26
                 GPIO.output(LEDPIN,GPIO.HIGH)
@@ -145,7 +149,7 @@ def main():
 
                 GPIO.output(LEDPIN,GPIO.LOW)
                 print('LED OFF...\n')
-            else if(discom >= 80):
+            elif discom >= 80 :
                 #pin17 red
                 LEDPIN = 17
                 GPIO.output(LEDPIN,GPIO.HIGH)
@@ -154,7 +158,7 @@ def main():
 
                 GPIO.output(LEDPIN,GPIO.LOW)
                 print('LED OFF...\n')
-        time.sleep(1)
+	time.sleep(1)
 
 def destroy():
     #turn off LED
