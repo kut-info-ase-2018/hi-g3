@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang='ja'>
+    <head>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect();
+            socket.on("count_data", function(data){
+                document.getElementById("count_status").innerHTML = data.value;
+            });
+        </script>
+    </head>
+    <body>
+        <p> Count:</p>
+        <div id="count_status"></div>
+    </body>
+</html>
