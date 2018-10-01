@@ -1,0 +1,32 @@
+EXE_DIR = "/home/pi/Rewrite"
+LOG_DIR = "/home/pi/log"
+
+#############################################
+#周波数を200
+#01 15 * * * cd /home/pi/shell; ./freq_200.sh
+
+#周波数を700
+#12 15 * * * cd /home/pi/shell; ./freq_700.sh
+#############################################
+
+#############################################
+#manager.pyを実行
+15 14 * * * cd $EXE_DIR/monitoring; python manager.py >> $LOG_DIR/manager_log.txt 2>&1
+
+#manager.pyを停止
+45 14 * * * cd $EXE_DIR/monitoring; kill -9 `cat manager_pid.txt`
+
+#system.pyを実行
+#35 13 * * * cd $EXE_DIR/monitoring; python system.py >> $LOG_DIR/system_log.txt 2>&1
+
+#system.pyを停止
+#05 13 * * * cd $EXE_DIR/monitoring; kill -9 `cat system_pid.txt`
+#############################################
+
+#############################################
+#ネットワーク切断
+35 13 * * * cd /home/pi; sudo ifdown eth0 >> $LOG_DIR/network_log.txt 2>&1
+
+#ネットワーク接続
+04 14 * * * cd /home/pi; sudo ifup eth0 >> $LOG_DIR/network_log.txt 2>&1
+############################################
